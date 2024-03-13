@@ -1,0 +1,834 @@
+{% load static %}
+  
+<head>
+	<title>LIBIB LOGIN</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link href="{% static 'bookstore/css/login.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'bookstore/css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'bookstore/css/footer.css' %}">
+    
+    
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+
+</head>
+<style>
+html{
+  scroll-behavior: smooth;
+}
+
+.container{
+  overflow: hidden;
+  animation: zoomInOut 2s infinite alternate;
+}
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+	/* body{
+		
+		background-image:url("{% static 'C:\Users\SHUBHAM RAJ\Desktop\Django-Online-Library-Management-System-master (1)\Django-Online-Library-Management-System-master\bookstore\static\bookstore\images\Campus View full of Siliguri Institute of Technology Darjeeling_Campus-View.jpg' %}");
+		background-repeat: repeat;
+		background-size: cover;
+		animation: bgChange 20s linear infinite;
+	} */
+	/* @keyframes bgChange{
+        20%{
+            background-image:  url('{%static "" %}');
+        }
+       
+        40%{
+            background-image:  url('{%static "" %}');
+        }
+        60%{
+            background-image:  url('{%static "" %}');
+        }
+        75%{
+            background-image:  url('{%static "" %}');
+        }
+        90%{
+            background-image:  url('{%static "" %}');
+        }
+    } */
+    *{
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(1.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+
+.navbar{
+    width: 1200px;
+    height: 75px;
+    margin: auto;
+}
+
+.icon{
+    width: 200px;
+    float: left;
+    height: 70px;
+}
+
+.logo{
+    color: #ff7200;
+    font-size: 35px;
+    font-family: Arial;
+    padding-left: 20px;
+    float: left;
+    padding-top: 10px;
+    margin-top: 5px
+}
+
+.menu{
+    width: 400px;
+    float: left;
+    height: 70px;
+}
+
+ul{
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul li{
+    list-style: none;
+    margin-left: 62px;
+    margin-top: 27px;
+    font-size: 14px;
+}
+
+ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-family: Arial;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+
+ul li a:hover{
+    color: #ff7200;
+}
+
+.search{
+    width: 330px;
+    float: left;
+    margin-left: 270px;
+}
+
+.srch{
+    font-family: 'Times New Roman';
+    width: 130px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid #ff7200;
+    margin-top: 13px;
+    color: #fff;
+    border-right: none;
+    font-size: 16px;
+    float: left;
+    padding: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    
+}
+
+.btn{
+    width: 180px;
+    height: 40px;
+    background: #ff7200;
+    border: 2px solid #ff7200;
+    margin-top: 13px;
+    color: #fff;
+    font-size: 15px;
+    /* border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px; */
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+.btn:hover{
+    color: #000;
+}
+
+.btn:focus{
+    outline: none;
+}
+
+.srch:focus{
+    outline: none;
+}
+
+.content{
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    color: #fff;
+    position: relative;
+}
+
+.content .par{
+    padding-left: 20px;
+    padding-bottom: 25px;
+    font-family: Arial;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+}
+
+.content h1{
+    font-family: 'Times New Roman';
+    font-size: 50px;
+    padding-left: 20px;
+    margin-top: 9%;
+    letter-spacing: 2px;
+}
+
+.content .cn{
+    width: 160px;
+    height: 40px;
+    background: #ff7200;
+    border: none;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .4s ease;
+    
+}
+
+.content .cn a{
+    text-decoration: none;
+    color: #000;
+    transition: .3s ease;
+}
+
+.cn:hover{
+    background-color: #fff;
+}
+
+.content span{
+    color: #ff7200;
+    font-size: 65px
+}
+
+.form{
+    width: 250px;
+    height: 380px;
+    background: linear-gradient(to top, rgba(0,0,0,0.8)50%,rgba(0,0,0,0.8)50%);
+    position: absolute;
+    top: -20px;
+    left: 870px;
+    transform: translate(0%,-5%);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.form h2{
+    width: 220px;
+    font-family: sans-serif;
+    text-align: center;
+    color: #ff7200;
+    font-size: 22px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 2px;
+    padding: 8px;
+}
+
+.form input{
+    width: 240px;
+    height: 35px;
+    background: transparent;
+    border-bottom: 1px solid #ff7200;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    color: #ebb8b8;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    font-family: sans-serif;
+}
+
+.form input:focus{
+    outline: none;
+}
+
+::placeholder{
+    color: #fff;
+    font-family: Arial;
+}
+
+.btnn{
+    width: 240px;
+    height: 40px;
+    background: #ff7200;
+    border: none;
+    margin-top: 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: 0.4s ease;
+}
+.btnn:hover{
+    background: #fff;
+    color: #ff7200;
+}
+.btnn a{
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+.form .link{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    padding-top: 20px;
+    text-align: center;
+}
+.form .link a{
+    text-decoration: none;
+    color: #ff7200;
+}
+.liw{
+    padding-top: 15px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+.icons a{
+    text-decoration: none;
+    color: #fff;
+}
+.icons ion-icon{
+    color: #fff;
+    font-size: 30px;
+    padding-left: 14px;
+    padding-top: 5px;
+    transition: 0.3s ease;
+}
+.icons ion-icon:hover{
+    color: #ff7200;
+}
+/* ********* about section********* */
+section{
+  width:80%;
+  margin:80px auto;
+  font-size: 18px;
+  
+
+}
+.title{
+    text-align: center;
+    font-size: 4vmin;
+    color:#ff7200;
+    
+    
+
+  }
+
+
+.box {
+      width: 360px;
+      height: 400px;
+      margin: 20px;
+      float: left;
+      text-align: center;
+      padding-top: 50px;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Background colors for the div boxes */
+    .box1 {
+      background-color: #ffcc00; /* Yellow */
+    }
+
+    .box2 {
+      background-color: #3399ff; /* Blue */
+    }
+
+    .box3 {
+      background-color: #9a2323; /* Red */
+    }
+
+    
+    /* Styling for the text */
+    .box p {
+      font-size: 18px;
+      color: white;
+    }
+
+    /* Styling for the icon */
+    .box i {
+      font-size: 48px;
+      color: white;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* Animation effect on hover */
+    .box:hover {
+      background-color: #ff7200;
+    }
+
+    /* Hide the overflowed text */
+    /* .box p {
+      display: none;
+    } */
+
+    /* Show the paragraphs on hover */
+    .box:hover p {
+      display: block;
+    }
+    .feature-box {
+      width: 350px;
+      height: 100px;
+      background-color:#ff7200 ;
+      margin: 20px auto;
+      padding: 20px;
+      text-align: center;
+      
+      border-radius: 10px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: slideIn 0.5s forwards;
+    }
+
+    /* Keyframes for the animation */
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Container for the feature boxes */
+    .features-container {
+      position: absolute;
+      left: 200px;
+      width: 500px;
+      
+      margin: 50px auto;
+      overflow-y: scroll;
+      max-height: 500px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      
+    }
+
+    /* Hide scrollbar for WebKit/Blink based browsers */
+    .features-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for Mozilla based browsers */
+    .features-container {
+      scrollbar-width: none;
+    }
+    #admin {
+  /* Admin-specific styles */
+  width: 300px;
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  overflow: hidden;
+}
+
+#admin {
+  /* Admin-specific styles */
+  width: 600px;
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.382);
+  text-align: center;
+  overflow: hidden;
+  animation: zoomInOut 1s infinite alternate;
+}
+
+.monster {
+  display: flex;
+  position: absolute;
+  /* right: 50px; */
+  position: absolute;
+  left: 900px;
+  /* align-items: center; */
+  height: 100vh;
+  overflow: hidden;
+}
+
+.box h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.box p {
+  color: #666;
+}
+
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+#monkey{
+  background: linear-gradient(to top, rgba(0,0,0,0.5)50%,rgba(0,0,0,0.5)50%), url(1.jpg);
+}
+
+
+footer {
+    background-color:  #ff7200;
+    color: #fff;
+    text-align: center;
+    padding: 10px ;
+    scroll-behavior: smooth;
+    position: absolute;
+    bottom: auto;
+}
+ #about hr{
+    border: none;
+    width: 200px;
+    height: 5px;
+    background-color: #ff7200;
+    position: absolute;
+    right: 640px;
+    animation: moving 4s linear infinite;
+  
+}
+@keyframes moving{
+  0%{
+    left: -20px;
+
+  }
+  100%{
+    left:100%;
+  }
+}
+
+footer{
+        background:linear-gradient(to top, rgba(0, 0, 0, 0.647)50%,rgba(0, 0, 0, 0.647)50%), url(1.jpg);
+        padding-top: 50px;
+    }
+    .school{
+        width: 1140px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .footer-content{
+        width: 33.3%;
+    }
+    h3{
+        font-size: 28px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    .footer-content p{
+        width:190px;
+        margin: auto;
+        padding: 7px;
+    }
+    .footer-content ul{
+        text-align: center;
+    }
+    .list{
+        padding: 0;
+    }
+    .list li{
+        width: auto;
+        text-align: center;
+        list-style-type:none;
+        padding: 7px;
+        position: relative;
+    }
+    .list li::before{
+        content: '';
+        position: absolute;
+        transform: translate(-50%,-50%);
+        left: 50%;
+        top: 100%;
+        width: 0;
+        height: 2px;
+        background: #ff7200;
+        transition-duration: .5s;
+    }
+    .list li:hover::before{
+        width: 70px;
+    }
+    .social-icons{
+        text-align: center;
+        padding: 0;
+    }
+    .social-icons li{
+        display: inline-block;
+        text-align: center;
+        padding: 5px;
+    }
+    .social-icons i{
+        color: white;
+        font-size: 25px;
+    }
+    a{
+        text-decoration: none;
+    }
+    a:hover{
+        color: #ff7200;
+    }
+    .social-icons i:hover{
+        color: #ff7200;
+    }
+    .bottom-bar{
+        background: #ff7200;
+        text-align: center;
+        padding: 10px 0;
+        margin-top: 60px;
+    }
+    .bottom-bar p{
+        color: #000000;
+        margin: 0;
+        padding: 0;
+        font-size: 16px;
+        padding: 7px;
+    }
+
+
+    
+
+    
+    
+	
+</style>
+
+<body> 
+	
+	<div class="main">
+    <div class="navbar">
+        <div class="icon">
+            <h2 class="logo">LibIB</h2>
+        </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#footer">SERVICE</a></li>
+                
+                <li><a href="#Contact">CONTACT</a></li>
+            </ul>
+        </div>
+
+        <div class="search">
+            <input class="srch" type="search" name="" placeholder="Type To text">
+            <a href="#"> <button class="btn">Search</button></a>
+        </div>
+
+    </div> 
+    <div class="content">
+        <h1>LIBIB<br><span>Take Your Learning</span> <br>To the Next Level..</h1>
+        <p class="par">We Have Always Imagined <br> that paradise will be a kind of library
+            <br> that is.. LIBIB</p>
+
+            <button class="cn"><a href="#">JOIN US</a></button>
+
+            
+            </div>
+                </div>
+            </div>
+    </div>
+</div>
+	
+<div class="container" id="container">
+  <form method="POST" action="{% url 'register' %}">
+    
+    {% csrf_token %}
+	<div class="form-container sign-up-container">
+		
+			<h1 style="margin-top: 30%;">Create Account</h1>
+			<input name="username" type="text" placeholder="Username" required/>
+			<input name="email" type="email" placeholder="Email" required/>
+			<input name="password" type="password" placeholder="Password" required/>
+			<button type="submit" value="Register" name="sign-up">Sign Up</button>
+		
+	</div>
+
+</form>
+
+
+<form method="POST" action="{% url 'login' %}">
+  {% csrf_token %}
+	<div class="form-container sign-in-container">
+		
+			<h1 style="margin-top: 30%;">Sign in</h1>
+			
+			<span>use your account</span>
+      
+			<input type="text"  name="username" placeholder="Username" required/>
+			<input type="password" name="password" placeholder="Password" required/>
+			
+			<button name="sign-in" value="Sign In">Sign In</button>
+		
+	</div>
+</form>  
+
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal information</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+    </div>
+  </div>
+</section>
+<section>
+  <div id="about"class="title">
+    <h1>About us</h1>
+    <hr>
+    <div class="line"></div>
+  </div>
+  <div class="id">
+    <p><h3>Welcome to our Library Management System website</h3>, crafted by dedicated students. Our platform simplifies access to books, journals, and resources. Users can search, reserve, and renew materials seamlessly. Faculty can manage course materials effortlessly. Engage in discussions, share reviews, and foster a vibrant learning community. We value feedback and strive for continuous improvement. Join us in the journey of exploration and discovery. Happy reading!
+
+
+      .</p>
+  </div>
+  
+  <div class="box box1">
+    <i class="fas fa-home"></i>
+    <br>
+    <H3>STUDENT</H3>
+    <p>
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
+      <ul></ul>
+    </p>
+  </div>
+
+  <div class="box box2">
+    <i class="fas fa-briefcase"></i>
+    <br>
+    <H3>LIBRARIAN</H3>
+    <p></p>
+  </div>
+
+  <div class="box box3">
+    <i class="fas fa-heart"></i>
+    <br>
+    <H3>ADMINISTRATION</H3>
+    <p></p>
+  </div>
+  <section>
+    <div id="monkey"class="title">
+      <h1>_</h1>
+      <div class="line"></div>
+    </div>
+    <div id="Contact" class="contact-container">
+      <form action="https://api.web3forms.com/submit" method="POST" class="contact-left">
+        <div class="contact-left-title">
+          <h2>Contact Us</h2>
+          <hr>
+          
+        </div>
+        <input type="hidden" name="access_key" value="62e3c3c4-46a1-429b-ac14-671910887682">
+
+        <input type="text" name="name" placeholder=" your name" class="contact-inputs" required>
+        <input type="text" name="name" placeholder=" your name" class="contact-inputs" required>
+        <input type="email" name="email" placeholder=" Admain email:shubhamraj36479@gmail.com" class="contact-inputs" required>
+        <textarea name="message" placeholder="your message" class="contact-inputs"></textarea>
+        <button type="submit">submit</button>
+      </form>
+      <div class="contact-right"></div>
+      
+      
+    </div>
+     <footer>
+      <div id="footer" class="school">
+        <div class="footer-content">
+            <h3>Contact Us</h3>
+            <p>Email:shubhamraj36479@gmail.com</p>
+            <p>Phone: 9798865460</p>
+            <p><h3>Address:</h3>  siliguri institute of technology <br>sukna, siliguri</p>
+        </div>
+        <div class="footer-content">
+            <h3>Quick Links</h3>
+             <ul class="list">
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Services</a></li>
+                <li><a href="">Products</a></li>
+                <li><a href="">Contact</a></li>
+             </ul>
+        </div>
+        <div class="footer-content">
+            <h3>Follow Us</h3>
+            <ul class="social-icons">
+             <li><a href=""><i class="fab fa-facebook"></i></a></li>
+             <li><a href=""><i class="fab fa-twitter"></i></a></li>
+             <li><a href=""><i class="fab fa-instagram"></i></a></li>
+             <li><a href=""><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+            </div>
+    </div>
+    <div class="bottom-bar">
+        <p>&copy; 2023 your company . All rights reserved</p>
+    </div>
+        
+      
+          <!-- <p>&copy; 2024 Your Company. All rights reserved.</p>
+      </footer>
+  </div> -->
+     
+<script src="{% static 'bookstore/js/login.js' %}"></script>            
+
+</body>
+</html>
+
